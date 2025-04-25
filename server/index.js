@@ -1,13 +1,3 @@
-/*
- * server/index.js
- * ES Module version for the RecycleWise API server
- * Make sure your package.json contains:
- *   {
- *     "type": "module",
- *     ...
- *   }
- */
-
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
