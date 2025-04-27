@@ -1,11 +1,22 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-      <h1>Hello from RecycleWise Client (Vite)!</h1>
-      <button className="btn btn-primary mt-4">Test DaisyUI</button>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          {/* Diğer routelarınız */}
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
