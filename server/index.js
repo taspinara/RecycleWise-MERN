@@ -2,27 +2,8 @@
 // ES Module version for the RecycleWise API server
 // Ensure 'type': 'module' is set in package.json
 
-import 'dotenv/config';
-import express from 'express';
-import cors from 'cors';
+import app from './app.js';
 import mongoose from 'mongoose';
-
-// Routes
-import authRouter from './routes/auth.js';
-
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Mount routers
-app.use('/api/auth', authRouter);
-
-// Health check
-app.get('/', (req, res) => {
-  res.send('Hello from RecycleWise API!');
-});
 
 // Configuration
 const PORT = process.env.PORT || 5000;
