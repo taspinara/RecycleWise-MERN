@@ -20,7 +20,10 @@ export default function Navbar() {
           RecycleWise
         </Link>
       </div>
-      <div className="flex-none">
+      <div className="flex-none space-x-2">
+        <Link to="/leaderboard" className="btn btn-ghost">
+          Leaderboard
+        </Link>
         {user ? (
           <>
             <Link to="/dashboard" className="btn btn-ghost">
