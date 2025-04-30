@@ -19,11 +19,11 @@ afterAll(async () => {
 });
 
 describe('Auth API', () => {
-    it('should register a user', async () => {
-        const res = await request(app)
-          .post('/api/auth/register')
-          .send({ name: 'Test', email: 'test@example.com', password: 'password' });
-        expect(res.statusCode).toBe(201);         // 201 Created
+  it('should register a user', async () => {
+    const res = await request(app)
+      .post('/api/auth/register')
+      .send({ name: 'Test', email: 'test@example.com', password: 'password' });
+    expect(res.statusCode).toBe(201); // 201 Created
     expect(res.body).toHaveProperty('token');
     expect(res.body).toHaveProperty('user');
     expect(res.body.user.email).toBe('test@example.com');
