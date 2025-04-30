@@ -6,6 +6,7 @@ import cors from 'cors';
 // Route imports
 import authRouter from './routes/auth.js';
 import usersRouter from './routes/users.js';
+import scanRouter from './routes/scan.js';
 // Middleware imports
 import auth from './middleware/auth.js';
 
@@ -25,5 +26,7 @@ app.use('/api/auth', authRouter);
 
 // Protected routes
 app.use('/api/users', auth, usersRouter);
+
+app.use('/api/scan', scanRouter);
 
 export default app;
