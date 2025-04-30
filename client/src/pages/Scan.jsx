@@ -41,9 +41,7 @@ export default function Scan() {
     formData.append('image', file);
 
     try {
-      const { data } = await api.post('/api/scan', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      const { data } = await api.post('/api/scan', formData); // ← axios/browser, FormData’dan otomatik olarak doğru Content-Type
       setResult(data);
     } catch (err) {
       console.error(err);
