@@ -1,5 +1,5 @@
 // server/tests/scan.test.js
-import { jest } from '@jest/globals';      // ← add this
+import { jest } from '@jest/globals'; // ← add this
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import request from 'supertest';
@@ -13,7 +13,7 @@ import axios from 'axios';
 jest.mock('axios');
 // After jest.mock, axios.post may be undefined, so redefine it:
 axios.post = jest.fn().mockResolvedValue({
-    data: { recyclable: true, instructions: 'Test talimat.' }
+  data: { recyclable: true, instructions: 'Test talimat.' },
 });
 
 process.env.JWT_SECRET = 'testsecret';
@@ -21,8 +21,8 @@ process.env.JWT_SECRET = 'testsecret';
 let mongoServer;
 
 beforeAll(async () => {
-    mongoServer = await MongoMemoryServer.create();
-    await mongoose.connect(mongoServer.getUri(), { dbName: 'test' });
+  mongoServer = await MongoMemoryServer.create();
+  await mongoose.connect(mongoServer.getUri(), { dbName: 'test' });
 });
 
 afterAll(async () => {
@@ -39,11 +39,13 @@ describe('POST /api/scan', () => {
       name: 'ScanTester',
       email: 'scan@test.com',
       passwordHash: 'irrelevant',
-      ecoPoints: 0
+      ecoPoints: 0,
     });
     userId = user._id.toString();
     // 3) Sign JWT
-    token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+      expiresIn: '1d',
+    });
   });
 
   it('should return AI result and increment ecoPoints', async () => {
@@ -55,7 +57,7 @@ describe('POST /api/scan', () => {
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual({
       recyclable: true,
-      instructions: 'Test talimat.'
+      instructions: 'Test talimat.',
     });
 
     // 4) Check ecoPoints increment

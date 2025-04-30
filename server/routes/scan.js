@@ -25,7 +25,6 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
     // console.log('Calling AI at:', aiUrl);
     // console.log('File size:', req.file?.buffer?.length);
 
-
     // Multer ile alınan buffer'ı FormData'ya ekle
     const form = new FormData();
     form.append('image', req.file.buffer, req.file.originalname);
@@ -45,14 +44,14 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
       await User.findByIdAndUpdate(
         req.user.id,
         { $inc: { ecoPoints: 1 } },
-        { new: true }
+        { new: true },
       );
     }
     // 2) Scan kaydı oluştur
     await Scan.create({
-        user: req.user.id,
-        recyclable: data.recyclable,
-        instructions: data.instructions
+      user: req.user.id,
+      recyclable: data.recyclable,
+      instructions: data.instructions,
     });
     // Sonucu client’a gönder
     return res.json(data);
