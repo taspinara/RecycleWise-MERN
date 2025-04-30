@@ -3,8 +3,11 @@ import express from 'express';
 import multer from 'multer';
 import axios from 'axios';
 import FormData from 'form-data';
+
 import auth from '../middleware/auth.js';
+
 import User from '../models/User.js';
+import Scan from '../models/Scan.js';
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -37,7 +40,7 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
 
     // AI cevabını alın
     const data = aiResponse.data;
-    // Eğer recyclable ise kullanıcının ecoPoints’ini 1 artır
+    // 1) ecoPoints arttırma
     if (data.recyclable) {
       await User.findByIdAndUpdate(
         req.user.id,
@@ -45,6 +48,12 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
         { new: true }
       );
     }
+    // 2) Scan kaydı oluştur
+    await Scan.create({
+        user: req.user.id,
+        recyclable: data.recyclable,
+        instructions: data.instructions
+    });
     // Sonucu client’a gönder
     return res.json(data);
   } catch (error) {

@@ -1,6 +1,7 @@
 // server/routes/users.js
 import express from 'express';
 import User from '../models/User.js';
+import Scan from '../models/Scan.js';
 
 const router = express.Router();
 
@@ -14,6 +15,19 @@ router.get('/me', async (req, res) => {
       return res.status(404).json({ message: 'Kullanıcı bulunamadı.' });
     }
     res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Sunucu hatası.' });
+  }
+});
+
+// GET /api/users/scans — kullanıcının tüm taramalarını döner
+router.get('/scans', async (req, res) => {
+  try {
+    const scans = await Scan.find({ user: req.user.id })
+      .sort({ date: -1 })
+      .select('date recyclable instructions');
+    res.json(scans);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Sunucu hatası.' });
