@@ -1,4 +1,4 @@
 // server/jest.config.js
 export default {
-    testEnvironment: 'node',
+  testEnvironment: 'node',
 };

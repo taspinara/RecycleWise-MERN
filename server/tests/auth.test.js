@@ -29,9 +29,11 @@ describe('Auth API', () => {
 
   it('should login a user', async () => {
     // önce kayıt
-    await request(app)
-      .post('/api/auth/register')
-      .send({ name: 'Test2', email: 'test2@example.com', password: 'password' });
+    await request(app).post('/api/auth/register').send({
+      name: 'Test2',
+      email: 'test2@example.com',
+      password: 'password',
+    });
 
     const res = await request(app)
       .post('/api/auth/login')

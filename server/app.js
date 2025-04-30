@@ -9,7 +9,6 @@ import usersRouter from './routes/users.js';
 // Middleware imports
 import auth from './middleware/auth.js';
 
-
 const app = express();
 
 // Global middleware
@@ -18,7 +17,7 @@ app.use(express.json());
 
 // Health check endpoint
 app.get('/', (req, res) => {
-    res.send('Hello from RecycleWise API!');
+  res.send('Hello from RecycleWise API!');
 });
 
 // Public routes
