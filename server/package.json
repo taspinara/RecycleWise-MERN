@@ -9,7 +9,7 @@
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "author": "",
