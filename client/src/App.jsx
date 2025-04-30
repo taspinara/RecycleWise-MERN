@@ -13,11 +13,11 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        {/* <Route path="/scan" element={<Scan />} /> */}
-        {/* <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/scan" element={<Scan />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/login" replace />} /> */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );
