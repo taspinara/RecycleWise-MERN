@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
     // Sadece name ve ecoPoints alanlarını al, desc sıralama
     const topUsers = await User.find()
       .sort({ ecoPoints: -1 })
-      .select('name ecoPoints -_id'); 
-      // -_id: id’yi istemiyorsanız çıkarır; dilerseniz silebilirsiniz
+      .select('name ecoPoints -_id');
+    // -_id: id’yi istemiyorsanız çıkarır; dilerseniz silebilirsiniz
     res.json(topUsers);
   } catch (err) {
     console.error('Leaderboard Error:', err);
