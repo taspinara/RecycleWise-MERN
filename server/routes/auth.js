@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
-    res.status(201).json({ token });
+    res.status(201).json({ token, user: newUser });
   } catch (error) {
     console.error('Register Error:', error);
     res.status(500).json({ message: 'Server error.' });
@@ -60,7 +60,14 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
-    res.json({ token });
+    // Kullanıcı bilgisini de dönüyoruz:
+    const safeUser = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      ecoPoints: user.ecoPoints,
+    };
+    return res.json({ token, user: safeUser });
   } catch (error) {
     console.error('Login Error:', error);
     res.status(500).json({ message: 'Server error.' });
