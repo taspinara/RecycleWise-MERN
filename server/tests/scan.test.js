@@ -11,8 +11,9 @@ import axios from 'axios';
 
 // 1) Stub axios.post to return a fixed AI response
 jest.mock('axios');
-axios.post.mockResolvedValue({
-  data: { recyclable: true, instructions: 'Test talimat.' }
+// After jest.mock, axios.post may be undefined, so redefine it:
+axios.post = jest.fn().mockResolvedValue({
+    data: { recyclable: true, instructions: 'Test talimat.' }
 });
 
 process.env.JWT_SECRET = 'testsecret';
@@ -20,8 +21,8 @@ process.env.JWT_SECRET = 'testsecret';
 let mongoServer;
 
 beforeAll(async () => {
-  mongoServer = await MongoMemoryServer.create();
-  await mongoose.connect(mongoServer.getUri(), { dbName: 'test' });
+    mongoServer = await MongoMemoryServer.create();
+    await mongoose.connect(mongoServer.getUri(), { dbName: 'test' });
 });
 
 afterAll(async () => {
