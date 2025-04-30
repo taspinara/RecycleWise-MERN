@@ -4,19 +4,17 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Scan from './pages/Scan';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        {/* Eğer kullanıcı girişli değilse, dashboard’a erişim engellenebilir */}
+        <Route path="/scan" element={<Scan />} />
         <Route path="/dashboard" element={<Dashboard />} />
-
-        {/* Auth sayfaları */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
-        {/* Anasayfa yönlendirmesi */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
