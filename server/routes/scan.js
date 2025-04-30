@@ -14,33 +14,28 @@ const upload = multer({ storage: multer.memoryStorage() });
  * Body: multipart/form-data, field name: "image"
  * Response: AI servisten dönen JSON ({ recyclable: bool, instructions: string })
  */
-router.post(
-  '/',
-  auth,
-  upload.single('image'),
-  async (req, res) => {
-    try {
-      // AI servis URL'i, .env'den
-      const aiUrl = `${process.env.AI_SERVICE_URL}/analyze`;
+router.post('/', auth, upload.single('image'), async (req, res) => {
+  try {
+    // AI servis URL'i, .env'den
+    const aiUrl = `${process.env.AI_SERVICE_URL}/analyze`;
 
-      // Multer ile alınan buffer'ı FormData'ya ekle
-      const form = new FormData();
-      form.append('image', req.file.buffer, req.file.originalname);
+    // Multer ile alınan buffer'ı FormData'ya ekle
+    const form = new FormData();
+    form.append('image', req.file.buffer, req.file.originalname);
 
-      // AI servisine istek
-      const aiResponse = await axios.post(aiUrl, form, {
-        headers: {
-          ...form.getHeaders(),
-        },
-      });
+    // AI servisine istek
+    const aiResponse = await axios.post(aiUrl, form, {
+      headers: {
+        ...form.getHeaders(),
+      },
+    });
 
-      // Sonucu client'a ilet
-      return res.json(aiResponse.data);
-    } catch (error) {
-      console.error('Scan Error:', error.message || error);
-      return res.status(500).json({ message: 'Scan işleminde hata oluştu.' });
-    }
+    // Sonucu client'a ilet
+    return res.json(aiResponse.data);
+  } catch (error) {
+    console.error('Scan Error:', error.message || error);
+    return res.status(500).json({ message: 'Scan işleminde hata oluştu.' });
   }
-);
+});
 
 export default router;
