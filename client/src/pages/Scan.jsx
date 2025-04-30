@@ -100,9 +100,20 @@ export default function Scan() {
 
         {/* Sonuç Gösterimi */}
         {result && (
-          <div className="alert alert-success mt-4">
-            <p><strong>Geri Dönüşümlü:</strong> {result.recyclable ? 'Evet' : 'Hayır'}</p>
-            <p><strong>Talimatlar:</strong> {result.instructions}</p>
+          <div
+            className={`alert mt-4 ${
+              result.recyclable ? 'alert-success' : 'alert-error'
+            }`}
+          >
+            <p>
+              <strong>Geri Dönüşümlü:</strong>{' '}
+              {result.recyclable ? 'Evet' : 'Hayır'}
+            </p>
+            {result.instructions && (
+              <p>
+                <strong>Talimatlar:</strong> {result.instructions}
+              </p>
+            )}
           </div>
         )}
       </div>
