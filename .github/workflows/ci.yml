@@ -7,6 +7,7 @@ on:
     branches: [main]
 
 jobs:
+  # ──────────────────────────────────────────
   server:
     name: Server Tests & Lint
     runs-on: ubuntu-latest
@@ -16,22 +17,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js (Server)
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install Dependencies
+      - name: Install Server Dependencies
         run: npm install
 
-      - name: Run ESLint
+      - name: Run ESLint (Server)
         run: npm run lint
 
-      - name: Run Tests
-        run: npm test
+      - name: Run Server Tests
+        run: npm test       # <-- burada auth + scan integration test’leriniz koşuyor
 
+  # ──────────────────────────────────────────
   client:
-    name: Client Build & Lint
+    name: Client Lint & Build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -39,15 +41,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js (Client)
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install Dependencies
+      - name: Install Client Dependencies
         run: npm install
 
-      - name: Run ESLint
+      - name: Run ESLint (Client)
         run: npm run lint
 
       - name: Build Client
