@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 
 export default function PostDetail() {
   const { id } = useParams();               // URL’deki :id
-  const { user, token, logout } = useContext(AuthContext);
+  const { token, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [post, setPost] = useState(null);
