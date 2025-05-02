@@ -1,15 +1,9 @@
-// server/index.js
-// ES Module version for the RecycleWise API server
-// Ensure 'type': 'module' is set in package.json
-
 import app from './app.js';
 import mongoose from 'mongoose';
 
 // Configuration
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
-
-console.log(process.env.AI_SERVICE_URL);
 
 // Start server with MongoDB connection
 async function startServer() {
