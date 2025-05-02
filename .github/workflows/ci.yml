@@ -23,7 +23,7 @@ jobs:
           node-version: '18'
 
       - name: Install Server Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run ESLint (Server)
         run: npm run lint
@@ -47,7 +47,7 @@ jobs:
           node-version: '18'
 
       - name: Install Client Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run ESLint (Client)
         run: npm run lint
