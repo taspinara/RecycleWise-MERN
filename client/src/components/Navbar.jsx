@@ -21,6 +21,9 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="flex-none space-x-2">
+        <Link to="/blog" className="btn btn-ghost">
+          Blog
+        </Link>
         <Link to="/leaderboard" className="btn btn-ghost">
           Leaderboard
         </Link>
