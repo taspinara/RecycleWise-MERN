@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Scan from './pages/Scan';
 import Leaderboard from './pages/Leaderboard';
 import Blog from './pages/Blog';
-import PostDetail from './pages/PostDetail';
+// import PostDetail from './pages/PostDetail';
 
 import Navbar from './components/Navbar';
 
@@ -18,7 +18,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/blog" element={<Blog />} />
-        <Route path="/posts/:id" element={<PostDetail />} />
+        {/* <Route path="/posts/:id" element={<PostDetail />} /> */}
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/scan" element={<Scan />} />
         <Route path="/dashboard" element={<Dashboard />} />
