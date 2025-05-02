@@ -9,6 +9,7 @@ import usersRouter from './routes/users.js';
 import scanRouter from './routes/scan.js';
 import leaderboardRouter from './routes/leaderboard.js';
 import postsRouter from './routes/posts.js';
+import commentsRouter from './routes/comments.js';
 
 // Middleware imports
 import auth from './middleware/auth.js';
@@ -31,5 +32,6 @@ app.use('/api/scan', scanRouter);
 
 // Blog CRUD
 app.use('/api/posts', postsRouter);
+app.use('/api/posts/:id/comments', commentsRouter);
 
 export default app;
