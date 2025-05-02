@@ -22,19 +22,17 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
   try {
     // AI servis URL'i, .env'den
     const aiUrl = `${process.env.AI_SERVICE_URL}/analyze`;
-    // console.log('Calling AI at:', aiUrl);
-    // console.log('File size:', req.file?.buffer?.length);
+    console.log('Calling AI at:', aiUrl);
+    console.log('File size:', req.file?.buffer?.length);
 
     // Multer ile alınan buffer'ı FormData'ya ekle
     const form = new FormData();
     form.append('image', req.file.buffer, req.file.originalname);
-    // console.log(req.file)
+    console.log(req.file);
 
     // AI servisine istek
     const aiResponse = await axios.post(aiUrl, form, {
-      headers: {
-        ...form.getHeaders(),
-      },
+      headers: form.getHeaders(),
     });
 
     // AI cevabını alın
