@@ -8,8 +8,10 @@ import authRouter from './routes/auth.js';
 import usersRouter from './routes/users.js';
 import scanRouter from './routes/scan.js';
 import leaderboardRouter from './routes/leaderboard.js';
-import postsRouter from './routes/posts.js';
+import challengesRouter from './routes/challenges.js';
 import commentsRouter from './routes/comments.js';
+import postsRouter from './routes/posts.js';
+import groupsRouter from './routes/groups.js';
 
 // Middleware imports
 import auth from './middleware/auth.js';
@@ -30,8 +32,16 @@ app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/users', auth, usersRouter);
 app.use('/api/scan', scanRouter);
 
+// Comments nested under posts (public GET, protected POST)
+app.use('/api/posts/:id/comments', commentsRouter);
+
 // Blog CRUD
 app.use('/api/posts', postsRouter);
-app.use('/api/posts/:id/comments', commentsRouter);
+
+// ★★★ CHALLENGES ★★★:
+app.use('/api/challenges', challengesRouter);
+
+// Groups & group messaging
+app.use('/api/groups', groupsRouter);
 
 export default app;
